@@ -1,23 +1,23 @@
 {
-  "name": "gulp-jsinspect",
-  "version": "2.0.0",
-  "description": "Gulp plugin for running jsinspect (detect copy-pasted and structurally similar code)",
+  "name": "gulp-jsinspecty",
+  "version": "1.0.0",
+  "description": "Gulp plugin for running jsinspect & generate a report file",
   "license": "MIT",
-  "homepage": "https://github.com/alexeyraspopov/gulp-jsinspect",
+  "homepage": "https://github.com/Froguard/gulp-jsinspecty",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexeyraspopov/gulp-jsinspect"
+    "url": "https://github.com/Froguard/gulp-jsinspecty"
   },
-  "author": "Alexey Raspopov (https://github.com/alexeyraspopov)",
+  "author": "Froguard (https://github.com/Froguard)",
   "contributors": [
     {
-      "name": "Dmitry Semigradsky",
-      "email": "semigradskyd@gmail.com",
-      "url": "https://github.com/Semigradsky"
+      "name": "froguard",
+      "email": "figure_wf@163.com",
+      "url": "https://github.com/froguard"
     }
   ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6.0.0"
   },
   "files": [
     "index.js"
@@ -33,10 +33,9 @@
     "paste"
   ],
   "dependencies": {
-    "chalk": "*",
-    "gulp-util": "^3.0.0",
-    "jsinspect": "^0.7.0",
-    "through2": "^2.0.0",
-    "util-extend": "^1.0.1"
+    "chalk": "^2.4.1",
+    "gulp-util": "^3.0.8",
+    "jsinspect": "^0.12.7",
+    "through2": "^2.0.3"
   }
 }

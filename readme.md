@@ -1,36 +1,72 @@
-# gulp-[jsinspect](https://github.com/danielstjules/jsinspect)
+# gulp-[jsinspect](https://github.com/danielstjules/jsinspect)y
 
-> Gulp plugin for running jsinspect (detect copy-pasted and structurally similar code)
+> Gulp plugin for running jsinspect & generate a report file
 
-[![Dependency Status](https://david-dm.org/alexeyraspopov/gulp-jsinspect.svg)](https://david-dm.org/alexeyraspopov/gulp-jsinspect)
+> Inspire from gulp-jsinspect
 
 ## Install
 
 ```sh
-$ npm install --save-dev gulp-jsinspect
+$ npm install D gulp-jsinspecty
 ```
 
 ## Usage
 
 ```javascript
 var gulp = require('gulp');
-var jsinspect = require('gulp-jsinspect');
+var jsinspecty = require('gulp-jsinspecty');
 
 gulp.task('default', function () {
-  return gulp.src('app.js')
-    .pipe(jsinspect({
-      'threshold':   10,
-      'identifiers': true,
-      'suppress':    0
-    }));
+  return gulp.src([
+      'src/**/*.js',
+      '!*.test.js'  
+  ])
+    .pipe(jsinspecty({
+        lineNumber: true,
+        reporter: 'markdown', // or a shortner 'md' 
+        reportFilename: 'result'
+    })) // you can also set options in .jsinspectrc file
+    .pipe(gulp.dest('./')); // generate a file 'result.md'
 });
 ```
 
 ### Options
 
+
+#### reporter
+
+Type: `String`
+
+Default value: `default`
+
+Allow values: `json`, `md`(or `markdown`), `pmd`, `defalut` 
+
+#### lineNumber
+
+Type: `Boolean`
+
+Default value: `false`
+
+Show line numbers in reporter
+
+#### reportFilename
+
+Type: `String`
+
+Default value: `default`
+
+Allow values: `json`, `md`(or `markdown`), `pmd`, `defalut` 
+
+#### failOnMatch
+
+Type: `Boolean`
+
+Default value: `false`
+
 #### threshold
 
 Type: `Number`
+
 Default value: `15`
 
 Number of nodes.
@@ -38,6 +74,7 @@ Number of nodes.
 #### suppress
 
 Type: `Number`
+
 Default value: `100`
 
 length to suppress diffs (off: 0).
@@ -45,32 +82,8 @@ length to suppress diffs (off: 0).
 #### identifiers
 
 Type: `Boolean`
+
 Default value: `false`
 
 Match identifiers.
 
-#### noDiff
-
-Type: `Boolean`
-Default value: `false`
-
-Disables 2-way diffs.
-
-#### noColor
-
-Type: `Boolean`
-Default value: `false`
-
-Disables colors.
-
-#### failOnMatch
-
-Type: `Boolean`
-Default value: `true`
-
-#### reporter
-
-Type: `String`
-Default value: `default`
-
-Specify the reporter.

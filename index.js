@@ -1,75 +1,98 @@
 'use strict';
+let fs = require('fs');
+let path = require('path');
+let gutil = require('gulp-util');
+let through = require('through2');
+let Vinyl = require('vinyl');
+let Inspector = require('jsinspect').Inspector;
+let Reporters = require('./reporters/index');
+let PluginError = gutil.PluginError;
 
-var extend    = require('util-extend');
-var gutil     = require('gulp-util');
-var through   = require('through2');
-var chalk     = require('chalk');
+const PLUGIN_NAME = 'gulp-jsinspecty';
+const CWD = process.cwd();
+const rcPath = path.resolve(CWD, './.jsinspectrc');
+let jsinspectRc = {};
 
-var Inspector = require('jsinspect/lib/inspector');
-var Reporter  = require('jsinspect/lib/reporters');
+if (fs.existsSync(rcPath) && fs.lstatSync(rcPath).isFile()) {
+    let rcContent = fs.readFileSync(rcPath, 'utf-8');
+    try {
+        jsinspectRc = JSON.parse(rcContent);
+    } catch(e) {
+        jsinspectRc = new Function(`return (${rcContent})`)();
+    }
+}
 
-module.exports = function(options) {
-	var paths = [];
-
-	options = extend({
-		threshold: 15,
-		noDiff: false,
-		identifiers: false,
-		suppress: 100,
-		noColor: false,
-		failOnMatch: true,
-		reporter: 'default'
-	}, options);
-
-	if (options.noColor) {
-		chalk.enabled = false;
-	}
-
-	return through.obj(function (file, enc, cb) {
-		if (file.isNull()) {
-			cb(null, file);
-			return;
-		}
-
-		paths.push(file.path);
-		cb(null, file);
-	}, function (cb) {
-		if (paths.length === 0) {
-			cb();
-			return;
-		}
-		
-		var self = this;
-
-		var inspector = new Inspector(paths, {
-			threshold:   options.threshold,
-			diff:        !options.noDiff,
-			identifiers: options.identifiers
-		});
-
-		var reporter = new Reporter[options.reporter](inspector, {
-			diff:     !options.noDiff,
-			suppress: options.suppress
-		});
-
-		if (options.failOnMatch) {
-			inspector.on('match', function() {
-				self.emit('error', new gutil.PluginError('jsinspect-gulp', 'jsinspect failed', {
-					showStack: false
-				}));
-			});
-		}
-
-		inspector.on('end', function() {
-			cb();
-		});
-		
-		inspector.on('error', function(err){
-			self.emit('error', new gutil.PluginError('jsinspect-gulp', err.message, {
-				showStack: false
-			}));
-		});
-
-		inspector.run();
-	});
+let rptFileExtMap = {
+    markdown: '.md',
+    md: '.md',
+    pmd: '.xml',
+    json: '.json'
 };
+
+let defOpts = {
+    threshold: 15,
+    noDiff: false,
+    identifiers: false,
+    suppress: 100,
+    color: false,
+    failOnMatch: false,
+    reportFilename: 'jsinspect-report'
+};
+
+let fakeWriteableStream = {};
+['cork', 'destroy', 'on', 'pipe', 'setDefaultEncoding', 'uncork'].forEach(k => fakeWriteableStream[k] = () => {});
+
+function gulpJsinspecty(option = {}) {
+    let filePaths = [], contents = [];
+    option = Object.assign({}, defOpts, jsinspectRc, option);
+
+    let transformFn = (file, enc, cb) => ((file.isNull() ? 0 : filePaths.push(file.path)) && cb());
+
+    function flushFn(cb){
+        if (filePaths.length === 0) {
+            return cb();
+        }
+        let self = this;
+        let reportFilename = option.reportFilename || defOpts.reportFilename;
+        let reportFileExt = rptFileExtMap[option.reporter] || '.txt';
+        reportFilename = /\..+$/.test(reportFilename) ? reportFilename : `${reportFilename}${reportFileExt}`;
+
+        fakeWriteableStream.end = () => {
+			self.push(new Vinyl({
+				cwd: CWD,
+				path: path.join(CWD, reportFilename),
+				contents: Buffer.from(contents, 'utf-8')
+			}));
+			cb();
+		};
+
+		fakeWriteableStream.write = data => (contents += data) || !0;
+
+        let inspector = new Inspector(filePaths, {
+            threshold: option.threshold,
+            identifiers: option.identifiers,
+            literals: option.literals,
+            minInstances: option.minInstances
+        });
+
+        let ReporterClass = Reporters[option.reporter] || Reporters.default;
+        new ReporterClass(inspector, {
+            suppress: option.suppress,
+            truncate: option.truncate,
+            writableStream: fakeWriteableStream,
+            lineNumber: option.lineNumber
+        });
+
+        inspector.on('error', err => this.emit('error', new PluginError(PLUGIN_NAME, err.message)));
+
+        if (option.failOnMatch) {
+            inspector.on('match', () => this.emit('error', new PluginError(PLUGIN_NAME, 'jsinspect exit by matched')));
+        }
+
+        inspector.run();
+    }
+
+    return through.obj(transformFn, flushFn);
+}
+
+module.exports = gulpJsinspecty;
