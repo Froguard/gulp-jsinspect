@@ -2,10 +2,10 @@
 let fs = require('fs');
 let path = require('path');
 let gutil = require('gulp-util');
-let through = require('through2');
+let through2 = require('through2');
 let Vinyl = require('vinyl');
 let Inspector = require('jsinspect').Inspector;
-let Reporters = require('./reporters/index');
+let Reporters = require('./reporters/index.js');
 let PluginError = gutil.PluginError;
 
 const PLUGIN_NAME = 'gulp-jsinspecty';
@@ -44,7 +44,7 @@ let fakeWriteableStream = {};
 
 function gulpJsinspecty(option = {}) {
     let filePaths = [], contents = [];
-    option = Object.assign({}, defOpts, jsinspectRc, option);
+    option = Object.assign({}, defOpts, jsinspectRc, option || {});
 
     let transformFn = (file, enc, cb) => ((file.isNull() ? 0 : filePaths.push(file.path)) && cb());
 
@@ -92,7 +92,7 @@ function gulpJsinspecty(option = {}) {
         inspector.run();
     }
 
-    return through.obj(transformFn, flushFn);
+    return through2.obj(transformFn, flushFn);
 }
 
 module.exports = gulpJsinspecty;

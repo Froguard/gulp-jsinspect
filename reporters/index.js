@@ -1,6 +1,6 @@
 let oldReporters = require('jsinspect').reporters;
 let chalk = require('chalk');
-let MdReporter = require('./markdown');
+let MdReporter = require('./markdown.js');
 
 chalk.enabled = false;
 
