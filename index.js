@@ -5,7 +5,7 @@ let gutil = require('gulp-util');
 let through2 = require('through2');
 let Vinyl = require('vinyl');
 let Inspector = require('jsinspect').Inspector;
-let Reporters = require('./reporters/index.js');
+let reporters = require('./reporters/index.js');
 let PluginError = gutil.PluginError;
 
 const PLUGIN_NAME = 'gulp-jsinspecty';
@@ -75,7 +75,7 @@ function gulpJsinspecty(option = {}) {
             minInstances: option.minInstances
         });
 
-        let ReporterClass = Reporters[option.reporter] || Reporters.default;
+        let ReporterClass = reporters[option.reporter] || reporters.default;
         new ReporterClass(inspector, {
             suppress: option.suppress,
             truncate: option.truncate,
