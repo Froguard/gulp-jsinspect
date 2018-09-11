@@ -1,7 +1,4 @@
-# test/
-# coverage/
 .idea/
 node_modules/
 *.log
 .travis.yml
-test

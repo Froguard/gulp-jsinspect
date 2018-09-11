@@ -1,6 +1,6 @@
 {
   "name": "gulp-jsinspecty",
-  "version": "0.0.1-2",
+  "version": "1.0.0",
   "description": "Gulp plugin for running jsinspect & generate a report file",
   "license": "MIT",
   "homepage": "https://github.com/Froguard/gulp-jsinspecty",
@@ -20,9 +20,6 @@
   "engines": {
     "node": ">=6.0.0"
   },
-  "files": [
-    "index.js"
-  ],
   "keywords": [
     "gulpplugin",
     "inspect",
