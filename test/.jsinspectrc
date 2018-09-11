@@ -1,0 +1,10 @@
+{
+  "threshold": 30,
+  "identifiers": true,
+  "literals": true,
+  "minInstances": 2,
+  "reporter": "md",
+  "lineNumber": true,
+  "truncate": 100,
+  "reportFilename": "jsinspect-check-result.md"
+}
