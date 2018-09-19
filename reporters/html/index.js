@@ -77,7 +77,7 @@ class HtmlReporter extends BaseReporter {
             if (lines.length) {
                 let last = lines.length - 1;
                 lines = lines.map((l, i) => {
-                    let lineNum = prettyLineNum(i, start, end);
+                    let lineNum = prettyLineNum(i-1, start, end);
                     let ln = `${lineNum}`.trim();
                     let id = `M${found}N${index}L${ln}`;
                     return `${(0<i&&i<last)?(`<a id="${id}" href="#${id}" class="line-num" data-num="${lineNum}"></a> `):''}${l}`;
