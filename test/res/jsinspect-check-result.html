@@ -12,10 +12,13 @@ h4 > a, li > a {text-decoration: none!important;}
 hr{border: none;border-top: 1px dashed #ccc;}
 ul {list-style: none;padding-left: 16px;color:#555;font-size:14px;line-height: 22px;text-align: left;}
 li {margin: 0;padding: 0;}
+.line-num, .line-code {}
 .line-num {color: rgba(27,31,35,0.3); user-select: none;text-decoration: none!important;padding: 0 2px;cursor: pointer;outline: none!important;}
 .line-num:before {content: attr(data-num);}
 .line-num:after {content: '|'; padding-left: 3px;}
 .con-code {padding:5px;position: relative;margin: 16px;border: 1px solid #ddd;border-radius: 3px;}
+.line-code {}
+.line-code:hover {background-color:rgba(255,255,255,0.6)}
 .con-code pre {background-color: #fff;color: #24292e;margin:0;}
 </style>
 </head>
@@ -99,42 +102,42 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 	<li><a class="u-link" href="#M1N2">- src/3.js:6,14</a></li>
 </ul>
 <div id="M1N0" class="con-code">
-<pre><code class="language-js"><span class="hljs-comment">/* src/1.js:4,13 */</span> 
-<a id="M1N0L4" href="#M1N0L4" class="line-num" data-num=" 4"></a> <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>)</span>{
-<a id="M1N0L5" href="#M1N0L5" class="line-num" data-num=" 5"></a>     <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/123/</span>.test(<span class="hljs-string">'123'</span>)) {
-<a id="M1N0L6" href="#M1N0L6" class="line-num" data-num=" 6"></a>         <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>);
-<a id="M1N0L7" href="#M1N0L7" class="line-num" data-num=" 7"></a>     }
-<a id="M1N0L8" href="#M1N0L8" class="line-num" data-num=" 8"></a>     <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/234/</span>.test(<span class="hljs-string">'234'</span>)) {
-<a id="M1N0L9" href="#M1N0L9" class="line-num" data-num=" 9"></a>         <span class="hljs-built_in">console</span>.log(<span class="hljs-number">234</span>);
-<a id="M1N0L10" href="#M1N0L10" class="line-num" data-num="10"></a>     }
-<a id="M1N0L11" href="#M1N0L11" class="line-num" data-num="11"></a>     <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123456</span>);
-<a id="M1N0L12" href="#M1N0L12" class="line-num" data-num="12"></a>     <span class="hljs-comment">/* 123123 */</span>
-<a id="M1N0L13" href="#M1N0L13" class="line-num" data-num="13"></a> };</code></pre>
-</div>
+<span class="line-code"><pre><code class="language-js"><span class="hljs-comment">/* src/1.js:4,13 */</span> </span>
+<a id="M1N0L4" href="#M1N0L4" class="line-num" data-num=" 4"></a> <span class="line-code"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>)</span>{</span>
+<a id="M1N0L5" href="#M1N0L5" class="line-num" data-num=" 5"></a> <span class="line-code">    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/123/</span>.test(<span class="hljs-string">'123'</span>)) {</span>
+<a id="M1N0L6" href="#M1N0L6" class="line-num" data-num=" 6"></a> <span class="line-code">        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>);</span>
+<a id="M1N0L7" href="#M1N0L7" class="line-num" data-num=" 7"></a> <span class="line-code">    }</span>
+<a id="M1N0L8" href="#M1N0L8" class="line-num" data-num=" 8"></a> <span class="line-code">    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/234/</span>.test(<span class="hljs-string">'234'</span>)) {</span>
+<a id="M1N0L9" href="#M1N0L9" class="line-num" data-num=" 9"></a> <span class="line-code">        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">234</span>);</span>
+<a id="M1N0L10" href="#M1N0L10" class="line-num" data-num="10"></a> <span class="line-code">    }</span>
+<a id="M1N0L11" href="#M1N0L11" class="line-num" data-num="11"></a> <span class="line-code">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123456</span>);</span>
+<a id="M1N0L12" href="#M1N0L12" class="line-num" data-num="12"></a> <span class="line-code">    <span class="hljs-comment">/* 123123 */</span></span>
+<a id="M1N0L13" href="#M1N0L13" class="line-num" data-num="13"></a> <span class="line-code">};</code></pre></span>
+<span class="line-code"></span></div>
 <div id="M1N1" class="con-code">
-<pre><code class="language-js"><span class="hljs-comment">/* src/2.js:2,10 */</span> 
-<a id="M1N1L2" href="#M1N1L2" class="line-num" data-num=" 2"></a> <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>)</span>{
-<a id="M1N1L3" href="#M1N1L3" class="line-num" data-num=" 3"></a>     <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/123/</span>.test(<span class="hljs-string">'123'</span>)) {
-<a id="M1N1L4" href="#M1N1L4" class="line-num" data-num=" 4"></a>         <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>);
-<a id="M1N1L5" href="#M1N1L5" class="line-num" data-num=" 5"></a>     }
-<a id="M1N1L6" href="#M1N1L6" class="line-num" data-num=" 6"></a>     <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/234/</span>.test(<span class="hljs-string">'234'</span>)) {
-<a id="M1N1L7" href="#M1N1L7" class="line-num" data-num=" 7"></a>         <span class="hljs-built_in">console</span>.log(<span class="hljs-number">234</span>);
-<a id="M1N1L8" href="#M1N1L8" class="line-num" data-num=" 8"></a>     }
-<a id="M1N1L9" href="#M1N1L9" class="line-num" data-num=" 9"></a>     <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123456</span>);
-<a id="M1N1L10" href="#M1N1L10" class="line-num" data-num="10"></a> };</code></pre>
-</div>
+<span class="line-code"><pre><code class="language-js"><span class="hljs-comment">/* src/2.js:2,10 */</span> </span>
+<a id="M1N1L2" href="#M1N1L2" class="line-num" data-num=" 2"></a> <span class="line-code"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>)</span>{</span>
+<a id="M1N1L3" href="#M1N1L3" class="line-num" data-num=" 3"></a> <span class="line-code">    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/123/</span>.test(<span class="hljs-string">'123'</span>)) {</span>
+<a id="M1N1L4" href="#M1N1L4" class="line-num" data-num=" 4"></a> <span class="line-code">        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>);</span>
+<a id="M1N1L5" href="#M1N1L5" class="line-num" data-num=" 5"></a> <span class="line-code">    }</span>
+<a id="M1N1L6" href="#M1N1L6" class="line-num" data-num=" 6"></a> <span class="line-code">    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/234/</span>.test(<span class="hljs-string">'234'</span>)) {</span>
+<a id="M1N1L7" href="#M1N1L7" class="line-num" data-num=" 7"></a> <span class="line-code">        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">234</span>);</span>
+<a id="M1N1L8" href="#M1N1L8" class="line-num" data-num=" 8"></a> <span class="line-code">    }</span>
+<a id="M1N1L9" href="#M1N1L9" class="line-num" data-num=" 9"></a> <span class="line-code">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123456</span>);</span>
+<a id="M1N1L10" href="#M1N1L10" class="line-num" data-num="10"></a> <span class="line-code">};</code></pre></span>
+<span class="line-code"></span></div>
 <div id="M1N2" class="con-code">
-<pre><code class="language-js"><span class="hljs-comment">/* src/3.js:6,14 */</span> 
-<a id="M1N2L6" href="#M1N2L6" class="line-num" data-num=" 6"></a> <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>)</span>{
-<a id="M1N2L7" href="#M1N2L7" class="line-num" data-num=" 7"></a>     <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/123/</span>.test(<span class="hljs-string">'123'</span>)) {
-<a id="M1N2L8" href="#M1N2L8" class="line-num" data-num=" 8"></a>         <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>);
-<a id="M1N2L9" href="#M1N2L9" class="line-num" data-num=" 9"></a>     }
-<a id="M1N2L10" href="#M1N2L10" class="line-num" data-num="10"></a>     <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/234/</span>.test(<span class="hljs-string">'234'</span>)) {
-<a id="M1N2L11" href="#M1N2L11" class="line-num" data-num="11"></a>         <span class="hljs-built_in">console</span>.log(<span class="hljs-number">234</span>);
-<a id="M1N2L12" href="#M1N2L12" class="line-num" data-num="12"></a>     }
-<a id="M1N2L13" href="#M1N2L13" class="line-num" data-num="13"></a>     <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123456</span>);
-<a id="M1N2L14" href="#M1N2L14" class="line-num" data-num="14"></a> };</code></pre>
-</div>
+<span class="line-code"><pre><code class="language-js"><span class="hljs-comment">/* src/3.js:6,14 */</span> </span>
+<a id="M1N2L6" href="#M1N2L6" class="line-num" data-num=" 6"></a> <span class="line-code"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>)</span>{</span>
+<a id="M1N2L7" href="#M1N2L7" class="line-num" data-num=" 7"></a> <span class="line-code">    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/123/</span>.test(<span class="hljs-string">'123'</span>)) {</span>
+<a id="M1N2L8" href="#M1N2L8" class="line-num" data-num=" 8"></a> <span class="line-code">        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123</span>);</span>
+<a id="M1N2L9" href="#M1N2L9" class="line-num" data-num=" 9"></a> <span class="line-code">    }</span>
+<a id="M1N2L10" href="#M1N2L10" class="line-num" data-num="10"></a> <span class="line-code">    <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/234/</span>.test(<span class="hljs-string">'234'</span>)) {</span>
+<a id="M1N2L11" href="#M1N2L11" class="line-num" data-num="11"></a> <span class="line-code">        <span class="hljs-built_in">console</span>.log(<span class="hljs-number">234</span>);</span>
+<a id="M1N2L12" href="#M1N2L12" class="line-num" data-num="12"></a> <span class="line-code">    }</span>
+<a id="M1N2L13" href="#M1N2L13" class="line-num" data-num="13"></a> <span class="line-code">    <span class="hljs-built_in">console</span>.log(<span class="hljs-number">123456</span>);</span>
+<a id="M1N2L14" href="#M1N2L14" class="line-num" data-num="14"></a> <span class="line-code">};</code></pre></span>
+<span class="line-code"></span></div>
 
 
 
