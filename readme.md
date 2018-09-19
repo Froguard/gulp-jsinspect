@@ -1,6 +1,6 @@
 # gulp-[jsinspect](https://github.com/danielstjules/jsinspect)y
 
-> Gulp plugin for running jsinspect & generate a report file
+> Gulp plugin for running jsinspect & generate a report file (`.json`, `.txt`, `.md`, `.html`)
 
 > Inspire from gulp-jsinspect
 
@@ -39,7 +39,7 @@ Type: `String`
 
 Default value: `default`
 
-Allow values: `json`, `md`(or `markdown`), `pmd`, `defalut` 
+Allow values: `json`, `md`(or `markdown`), `pmd`, `html`, `defalut` 
 
 #### lineNumber
 
