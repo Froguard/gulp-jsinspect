@@ -1,3 +1,4 @@
+// 123123
 module.exports = function a(){
     if (/123/.test('123')) {
         console.log(123);

@@ -1,20 +1,13 @@
 let oldReporters = require('jsinspect').reporters;
 let chalk = require('chalk');
 let MdReporter = require('./markdown.js');
-
+let HtmlReporter = require('./html/index');
+let { prettyLineNum } = require('../lib/util');
 chalk.enabled = false;
 
-function prettyLineNum(index, start, end) {
-    let res = `${start + index}`;
-    let ln = res.length;
-    let le = `${end}`.length;
-    let i = le -ln;
-    while (i--) {res += ' ';}
-    return res;
-}
-
 let orgReporters = Object.assign({}, oldReporters, {
-    markdown: MdReporter
+    markdown: MdReporter,
+    html: HtmlReporter
 });
 let orgRptrNames = Object.keys(orgReporters);
 

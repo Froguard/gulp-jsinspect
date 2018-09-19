@@ -1,5 +1,6 @@
 let chalk = require('chalk');
 let BaseReporter = require('jsinspect/lib/reporters/base');
+let { getTotalLines } = require('../lib/util');
 
 class MdReporter extends BaseReporter {
 
@@ -25,7 +26,7 @@ class MdReporter extends BaseReporter {
         let output = (this._found > 1) ? '\n' : '';
         let codeFragment = '';
         let instances = match.instances;
-        let totalLines = this._getTotalLines(match);
+        let totalLines = getTotalLines(match);
 
         output += `#### ID: *${match.hash}*,  Duplicate-Lines: ${totalLines}\n\n`;
         instances.forEach(instance => output += `- ${instance.filename}: ${instance.start.line}\n`);
@@ -40,10 +41,6 @@ class MdReporter extends BaseReporter {
         output += `${codeFragment}\n\`\`\`\n\n---\n\n`;
 
         return output;
-    }
-
-    _getTotalLines(match) {
-        return match.instances.reduce((res, curr) => (res + curr.end.line - curr.start.line + 1), 0);
     }
 }
 

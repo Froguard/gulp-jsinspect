@@ -26,7 +26,8 @@ let rptFileExtMap = {
     markdown: '.md',
     md: '.md',
     pmd: '.xml',
-    json: '.json'
+    json: '.json',
+    html: '.html'
 };
 
 let defOpts = {

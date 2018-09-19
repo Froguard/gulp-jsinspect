@@ -1,6 +1,6 @@
 {
   "name": "gulp-jsinspecty",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp plugin for running jsinspect & generate a report file",
   "license": "MIT",
   "homepage": "https://github.com/Froguard/gulp-jsinspecty",
@@ -21,21 +21,20 @@
     "node": ">=6.0.0"
   },
   "keywords": [
-    "gulpplugin",
+    "gulp-plugin",
     "inspect",
     "detect",
     "code",
-    "duplicate",
-    "structure",
     "copy",
-    "paste"
+    "paste",
+    "repeat"
   ],
   "dependencies": {
     "chalk": "^2.4.1",
-    "g": "^2.0.1",
-    "gulp": "^3.9.1",
     "gulp-util": "^3.0.8",
-    "jsinspect": "^0.12.7",
+    "highlight.js": "^9.12.0",
+    "jsinspect": "0.12.7",
+    "marked": "^0.5.0",
     "through2": "^2.0.3"
   }
 }

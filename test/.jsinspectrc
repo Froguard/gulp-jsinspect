@@ -3,8 +3,8 @@
   "identifiers": true,
   "literals": true,
   "minInstances": 2,
-  "reporter": "md",
+  "reporter": "html",
   "lineNumber": true,
   "truncate": 100,
-  "reportFilename": "jsinspect-check-result.md"
+  "reportFilename": "jsinspect-check-result"
 }
