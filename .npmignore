@@ -1,6 +1,8 @@
 .idea/
+.gitattributes
 node_modules/
 *.log
 .travis.yml
 test/*
 test/**/*
+!test/.gitkeep

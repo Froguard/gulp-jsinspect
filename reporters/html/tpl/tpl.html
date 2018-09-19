@@ -12,10 +12,13 @@ h4 > a, li > a {text-decoration: none!important;}
 hr{border: none;border-top: 1px dashed #ccc;}
 ul {list-style: none;padding-left: 16px;color:#555;font-size:14px;line-height: 22px;text-align: left;}
 li {margin: 0;padding: 0;}
+.line-num, .line-code {}
 .line-num {color: rgba(27,31,35,0.3); user-select: none;text-decoration: none!important;padding: 0 2px;cursor: pointer;outline: none!important;}
 .line-num:before {content: attr(data-num);}
 .line-num:after {content: '|'; padding-left: 3px;}
 .con-code {padding:5px;position: relative;margin: 16px;border: 1px solid #ddd;border-radius: 3px;}
+.line-code {}
+.line-code:hover {background-color:rgba(255,255,255,0.6)}
 .con-code pre {background-color: #fff;color: #24292e;margin:0;}
 </style>
 </head>
